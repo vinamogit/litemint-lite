@@ -35,19 +35,19 @@
             var list = document.getElementById("list");
             var i = 1;
             for (var d of result.data) {
-                var type = '🖼️ picture<br />';
+                var type = '🖼️ picture';
                 if (d.meta.video)  {
-                    type = '🎥 video<br />';
+                    type = '🎥 video';
                 } else  if (d.meta.audio) {
-                    type = '🎵 audio<br />';
+                    type = '🎵 audio';
                 }
                 var pic = (d.picture256) ? d.picture256 : d.picture;
                 let div = '<div id="' + d.code + ':' + d.issuer + '" >';
-                div += '<span><h3>#' + i++ + ' - ' + d.name + ' ❤️ ' + d.likes + '</h3>';
+                div += '<span><h3>#' + i++ + ' - ' + d.name + ' - ' + type + ' - ❤️ ' + d.likes + '</h3>';
                 div += '<a href="https://litemint.com/items/' + d.issuer + '/' + d.code + '" target="_blank">';
                 div += '<img width="256px" src="' + pic + '" />';
                 div += '</a>';
-                div += '<div class="desc">'+ type + d.description + '</div>';
+                div += '<div class="desc">'+  d.description + '</div>';
                 div += '</div>';
                 list.innerHTML += div;
             }
