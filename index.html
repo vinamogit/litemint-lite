@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+    <script>
+
+        (async () => {
+
+            var url = "https://cloud.litemint.com:9068/mkt/search";
+            var search =
+            {
+                "count": 60,
+                "page": 1,
+                "sort": "popular",
+                "sortdir": "desc",
+                "term": "nftartistchallenge"
+            };
+
+            var response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(search)
+            });
+
+            var result = await response.json();
+            var list = document.getElementById("list");
+            var i = 1;
+            for (var d of result.data) {
+                let div = '<div id="' + d.code + ':' + d.issuer + '" >';
+                div += '<span><h3>#' + i++ + ' - ' + d.name + ' ❤️ ' + d.likes + '</h3>';
+                div += '<a href="https://litemint.com/items/' + d.issuer + '/' + d.code + '" target="_blank">';
+                div += '<img src="' + d.picture256 + '" />';
+                div += '</a>';
+                div += '<div class="desc">' + d.description + '</div>';
+                div += '</div>';
+                list.innerHTML += div;
+            }
+
+            console.log(result)
+        })()
+
+
+    </script>
+    <style>
+        
+        p {
+            position: relative;
+            left: 270px;
+            bottom: 256px;
+        }
+
+        .desc {
+            display: inline-block;
+            width: 300px;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>LiteMint SD</h2>
+    <div id="list">
+
+    </div>
+</body>
+
+</html>
