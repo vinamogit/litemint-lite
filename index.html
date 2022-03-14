@@ -36,9 +36,9 @@
             var i = 1;
             for (var d of result.data) {
                 var type = '🖼️ picture';
-                if (d.meta.video)  {
+                if (d.meta.video != "undefined")  {
                     type = '🎥 video';
-                } else  if (d.meta.audio) {
+                } else  if (d.meta.audio != "undefined") {
                     type = '🎵 audio';
                 }
                 var pic = (d.picture256) ? d.picture256 : d.picture;
