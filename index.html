@@ -35,6 +35,7 @@
             var list = document.getElementById("list");
             var i = 1;
             for (var d of result.data) {
+                var pic = (d.picture256) ? d.picture256 : d.picture;
                 let div = '<div id="' + d.code + ':' + d.issuer + '" >';
                 div += '<span><h3>#' + i++ + ' - ' + d.name + ' ❤️ ' + d.likes + '</h3>';
                 div += '<a href="https://litemint.com/items/' + d.issuer + '/' + d.code + '" target="_blank">';
